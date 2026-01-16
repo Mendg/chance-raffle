@@ -13,11 +13,11 @@ export default function Footer() {
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                 <Heart className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold">Chance Raffle</span>
+              <span className="text-xl font-bold">Friendship Circle Raffle</span>
             </div>
             <p className="text-white/80 text-sm">
-              Supporting our community through innovative fundraising.
-              Every entry makes a difference.
+              Friendship Circle creates friendships between teen volunteers
+              and individuals with special needs. Every entry supports our mission.
             </p>
           </div>
 

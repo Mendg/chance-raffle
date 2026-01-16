@@ -22,9 +22,10 @@ export default function Home() {
                   <span style={{ color: 'var(--fc-teal-light)' }}>Make a Difference</span>
                 </h1>
                 <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-lg">
-                  Enter our unique raffle where your random entry number becomes
-                  your ticket price. Pay anywhere from $1 to $360 for a chance
-                  to win big!
+                  Support Friendship Circle with our unique raffle! Your random
+                  entry number becomes your ticket price - pay anywhere from $1
+                  to $360 for a chance to win big while helping create friendships
+                  for individuals with special needs.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <a href="#enter" className="btn btn-primary text-lg px-8 py-4">
@@ -140,7 +141,7 @@ export default function Home() {
                 <p style={{ color: 'var(--muted-foreground)' }}>
                   Once your entry is confirmed and payment is captured, no refunds
                   are available. Your contribution goes directly to supporting
-                  our charitable mission.
+                  Friendship Circle&apos;s programs for individuals with special needs.
                 </p>
               </div>
             </div>

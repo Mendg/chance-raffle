@@ -17,7 +17,7 @@ export default function Header() {
               <Heart className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold" style={{ color: 'var(--fc-navy)' }}>
-              Chance Raffle
+              Friendship Circle Raffle
             </span>
           </Link>
 
