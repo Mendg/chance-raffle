@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Entry {
+  id             String   @id @default(uuid())
+  name           String
+  email          String
+  phone          String
+  assignedNumber Int      @unique
+  amountCharged  Int      // Amount in cents
+  paymentId      String?  // Stripe PaymentIntent ID
+  entryType      String   @default("PRIMARY") // PRIMARY, OVERFLOW, MANUAL
+  status         String   @default("PENDING") // PENDING, CONFIRMED, FAILED, REFUNDED
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([email])
+  @@index([assignedNumber])
+  @@index([entryType])
+}
+
+model Settings {
+  id                String   @id @default("default")
+  campaignName      String   @default("Chance Raffle")
+  prizeDescription  String   @default("Grand Prize")
+  cashValue         Int      @default(10000) // Amount in cents
+  totalEntries      Int      @default(360)
+  overflowEnabled   Boolean  @default(false)
+  overflowStartTime DateTime?
+  overflowDuration  Int      @default(180) // Minutes (3 hours)
+  isActive          Boolean  @default(true)
+  winnerId          String?
+  winnerDrawnAt     DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
