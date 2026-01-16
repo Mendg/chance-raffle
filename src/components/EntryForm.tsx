@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
   Elements,
@@ -8,7 +8,7 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import { Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { Loader2, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''
@@ -24,6 +24,80 @@ interface ConfirmedEntry {
   assignedNumber: number;
   amountCharged: number;
   name: string;
+}
+
+function NumberReveal({ finalNumber, onComplete }: { finalNumber: number; onComplete: () => void }) {
+  const [displayNumber, setDisplayNumber] = useState(0);
+  const [phase, setPhase] = useState<'spinning' | 'slowing' | 'revealed'>('spinning');
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    let speed = 50;
+    let iterations = 0;
+    const maxIterations = 30;
+
+    const spin = () => {
+      iterations++;
+      setDisplayNumber(Math.floor(Math.random() * 360) + 1);
+
+      if (iterations < maxIterations * 0.6) {
+        // Fast spinning
+        intervalRef.current = setTimeout(spin, speed);
+      } else if (iterations < maxIterations) {
+        // Slowing down
+        setPhase('slowing');
+        speed += 30;
+        intervalRef.current = setTimeout(spin, speed);
+      } else {
+        // Reveal final number
+        setDisplayNumber(finalNumber);
+        setPhase('revealed');
+        setTimeout(onComplete, 500);
+      }
+    };
+
+    intervalRef.current = setTimeout(spin, speed);
+
+    return () => {
+      if (intervalRef.current) clearTimeout(intervalRef.current);
+    };
+  }, [finalNumber, onComplete]);
+
+  return (
+    <div className="relative">
+      <div
+        className={`
+          p-8 rounded-2xl inline-block transition-all duration-500
+          ${phase === 'revealed' ? 'scale-110' : 'scale-100'}
+        `}
+        style={{
+          backgroundColor: 'var(--fc-navy)',
+          boxShadow: phase === 'revealed'
+            ? '0 0 60px rgba(27, 54, 93, 0.5), 0 0 100px rgba(54, 187, 174, 0.3)'
+            : '0 10px 40px rgba(27, 54, 93, 0.3)'
+        }}
+      >
+        <p className="text-white/80 text-sm mb-2">
+          {phase === 'revealed' ? 'Your Entry Number' : 'Finding your number...'}
+        </p>
+        <p
+          className={`
+            text-6xl sm:text-7xl font-bold text-white tabular-nums
+            ${phase === 'spinning' ? 'blur-[2px]' : ''}
+            ${phase === 'slowing' ? 'blur-[1px]' : ''}
+            ${phase === 'revealed' ? 'animate-bounce-once' : ''}
+          `}
+        >
+          #{displayNumber}
+        </p>
+      </div>
+      {phase === 'revealed' && (
+        <div className="absolute -top-4 -right-4">
+          <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
+        </div>
+      )}
+    </div>
+  );
 }
 
 function PaymentForm({
@@ -129,7 +203,7 @@ function PaymentForm({
 }
 
 export default function EntryForm() {
-  const [step, setStep] = useState<'form' | 'payment' | 'success' | 'error'>('form');
+  const [step, setStep] = useState<'form' | 'payment' | 'revealing' | 'success' | 'error'>('form');
   const [formData, setFormData] = useState<EntryFormData>({
     name: '',
     email: '',
@@ -141,6 +215,7 @@ export default function EntryForm() {
   const [confirmedEntry, setConfirmedEntry] = useState<ConfirmedEntry | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showAmount, setShowAmount] = useState(false);
 
   function validateForm(): boolean {
     const newErrors: Partial<EntryFormData> = {};
@@ -195,6 +270,12 @@ export default function EntryForm() {
 
   function handlePaymentSuccess(entry: ConfirmedEntry) {
     setConfirmedEntry(entry);
+    setShowAmount(false);
+    setStep('revealing');
+  }
+
+  function handleRevealComplete() {
+    setShowAmount(true);
     setStep('success');
   }
 
@@ -213,45 +294,72 @@ export default function EntryForm() {
     setErrorMessage(null);
   }
 
+  if (step === 'revealing' && confirmedEntry) {
+    return (
+      <div className="card text-center py-12">
+        <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--fc-navy)' }}>
+          Drumroll please...
+        </h2>
+        <p className="mb-8" style={{ color: 'var(--muted-foreground)' }}>
+          {confirmedEntry.name.split(' ')[0]}, your number is being revealed!
+        </p>
+
+        <NumberReveal
+          finalNumber={confirmedEntry.assignedNumber}
+          onComplete={handleRevealComplete}
+        />
+      </div>
+    );
+  }
+
   if (step === 'success' && confirmedEntry) {
     return (
       <div className="card text-center py-8">
         <div
-          className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+          className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 animate-fade-in"
           style={{ backgroundColor: 'rgba(54, 187, 174, 0.1)' }}
         >
           <CheckCircle className="w-10 h-10" style={{ color: 'var(--fc-teal)' }} />
         </div>
 
-        <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--fc-navy)' }}>
+        <h2 className="text-2xl font-bold mb-2 animate-fade-in" style={{ color: 'var(--fc-navy)' }}>
           You&apos;re In!
         </h2>
-        <p className="mb-6" style={{ color: 'var(--muted-foreground)' }}>
+        <p className="mb-6 animate-fade-in" style={{ color: 'var(--muted-foreground)' }}>
           Thank you, {confirmedEntry.name.split(' ')[0]}!
         </p>
 
         <div
-          className="p-6 rounded-xl mb-6 inline-block"
-          style={{ backgroundColor: 'var(--fc-navy)' }}
+          className="p-8 rounded-2xl mb-6 inline-block"
+          style={{
+            backgroundColor: 'var(--fc-navy)',
+            boxShadow: '0 0 60px rgba(27, 54, 93, 0.5), 0 0 100px rgba(54, 187, 174, 0.3)'
+          }}
         >
           <p className="text-white/80 text-sm mb-2">Your Entry Number</p>
-          <p className="text-5xl font-bold text-white">
+          <p className="text-6xl sm:text-7xl font-bold text-white">
             #{confirmedEntry.assignedNumber}
           </p>
         </div>
 
-        <p className="mb-4" style={{ color: 'var(--muted-foreground)' }}>
-          You were charged{' '}
-          <span className="font-bold" style={{ color: 'var(--fc-teal)' }}>
-            ${(confirmedEntry.amountCharged / 100).toFixed(2)}
-          </span>
-        </p>
+        {showAmount && (
+          <div className="animate-fade-in">
+            <p className="text-xl mb-2" style={{ color: 'var(--fc-navy)' }}>
+              You paid only
+            </p>
+            <p
+              className="text-4xl font-bold mb-4"
+              style={{ color: 'var(--fc-teal)' }}
+            >
+              ${(confirmedEntry.amountCharged / 100).toFixed(0)}
+            </p>
+            <p className="text-sm mb-6" style={{ color: 'var(--muted-foreground)' }}>
+              A confirmation email has been sent to your inbox.
+            </p>
+          </div>
+        )}
 
-        <p className="text-sm mb-6" style={{ color: 'var(--muted-foreground)' }}>
-          A confirmation email has been sent to your inbox.
-        </p>
-
-        <button onClick={handleReset} className="btn btn-outline">
+        <button onClick={handleReset} className="btn btn-outline animate-fade-in">
           Enter Another Number
         </button>
       </div>
