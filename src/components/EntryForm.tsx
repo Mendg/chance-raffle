@@ -272,6 +272,10 @@ export default function EntryForm() {
     setConfirmedEntry(entry);
     setShowAmount(false);
     setStep('revealing');
+    // Scroll to top of the form area so user sees the reveal
+    setTimeout(() => {
+      document.getElementById('entry-card')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
   }
 
   function handleRevealComplete() {
@@ -296,7 +300,7 @@ export default function EntryForm() {
 
   if (step === 'revealing' && confirmedEntry) {
     return (
-      <div className="card text-center py-12">
+      <div id="entry-card" className="card text-center py-12">
         <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--fc-navy)' }}>
           Drumroll please...
         </h2>
@@ -314,7 +318,7 @@ export default function EntryForm() {
 
   if (step === 'success' && confirmedEntry) {
     return (
-      <div className="card text-center py-8">
+      <div id="entry-card" className="card text-center py-8">
         <div
           className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 animate-fade-in"
           style={{ backgroundColor: 'rgba(54, 187, 174, 0.1)' }}
