@@ -118,11 +118,11 @@ body {
 
 /* Gradient backgrounds */
 .bg-gradient-fc {
-  background: linear-gradient(135deg, var(--fc-navy) 0%, var(--fc-teal) 100%);
+  background: linear-gradient(135deg, var(--fc-navy) 0%, var(--fc-navy-light) 100%);
 }
 
 .bg-gradient-fc-reverse {
-  background: linear-gradient(135deg, var(--fc-teal) 0%, var(--fc-navy) 100%);
+  background: linear-gradient(135deg, var(--fc-navy-light) 0%, var(--fc-navy) 100%);
 }
 
 /* Button base styles */
@@ -145,14 +145,14 @@ body {
 }
 
 .btn-primary {
-  background: var(--fc-teal);
+  background: var(--fc-navy);
   color: white;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--fc-teal-dark);
+  background: var(--fc-navy-light);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(54, 187, 174, 0.4);
+  box-shadow: 0 4px 12px rgba(27, 54, 93, 0.4);
 }
 
 .btn-secondary {
