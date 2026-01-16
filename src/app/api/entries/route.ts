@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import prisma from '@/lib/prisma';
 import { capturePayment, cancelPayment } from '@/lib/stripe';
-import { assignEntryNumber, generateRandomAmount, getRaffleStats, enableOverflow, TOTAL_PRIMARY_ENTRIES } from '@/lib/raffle';
+import { assignEntryNumber, getRaffleStats, enableOverflow, TOTAL_PRIMARY_ENTRIES } from '@/lib/raffle';
 import { sendEntryConfirmation } from '@/lib/email';
 import { EntryStatus } from '@/types';
 
@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate random charge amount ($1-$360)
-    const amountToCharge = generateRandomAmount();
+    // Charge amount equals the entry number (entry #190 = $190)
+    const amountToCharge = assignment.number * 100; // Convert to cents
 
     // Create the entry record first (pending status)
     const entry = await prisma.entry.create({
