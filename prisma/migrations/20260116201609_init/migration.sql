@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Entry" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
@@ -9,35 +9,41 @@ CREATE TABLE "Entry" (
     "paymentId" TEXT,
     "entryType" TEXT NOT NULL DEFAULT 'PRIMARY',
     "status" TEXT NOT NULL DEFAULT 'PENDING',
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Entry_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Settings" (
-    "id" TEXT NOT NULL PRIMARY KEY DEFAULT 'default',
+    "id" TEXT NOT NULL DEFAULT 'default',
     "campaignName" TEXT NOT NULL DEFAULT 'Chance Raffle',
     "prizeDescription" TEXT NOT NULL DEFAULT 'Grand Prize',
     "cashValue" INTEGER NOT NULL DEFAULT 10000,
     "totalEntries" INTEGER NOT NULL DEFAULT 360,
     "overflowEnabled" BOOLEAN NOT NULL DEFAULT false,
-    "overflowStartTime" DATETIME,
+    "overflowStartTime" TIMESTAMP(3),
     "overflowDuration" INTEGER NOT NULL DEFAULT 180,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "winnerId" TEXT,
-    "winnerDrawnAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "winnerDrawnAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Settings_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "AdminUser" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "passwordHash" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "AdminUser_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
