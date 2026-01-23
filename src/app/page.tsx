@@ -12,30 +12,57 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-fc text-white py-16 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="bg-gradient-fc text-white py-16 sm:py-24 relative overflow-hidden">
+          {/* Floating number decorations */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-10 left-10 text-8xl font-bold text-white/5 animate-pulse-slow">$1</div>
+            <div className="absolute top-20 right-20 text-7xl font-bold text-white/5 animate-pulse-slow">$360</div>
+            <div className="absolute bottom-20 left-1/4 text-6xl font-bold text-white/5 animate-pulse-slow">$42</div>
+            <div className="absolute bottom-10 right-1/3 text-5xl font-bold text-white/5 animate-pulse-slow">$127</div>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-sm font-medium mb-6">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  Live Raffle • Limited to 360 Entries
+                </div>
+
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Take a Chance,
+                  Your Number =
                   <br />
-                  <span style={{ color: 'var(--fc-teal-light)' }}>Make a Difference</span>
+                  <span style={{ color: 'var(--fc-teal-light)' }}>Your Price</span>
                 </h1>
-                <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-lg">
-                  Support Friendship Circle with our unique raffle! Your random
-                  entry number becomes your ticket price - pay anywhere from $1
-                  to $360 for a chance to win big while helping create friendships
-                  for individuals with special needs.
+
+                {/* Value prop boxes */}
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="bg-white/10 rounded-xl p-4">
+                    <div className="text-3xl font-bold mb-1">$1-$360</div>
+                    <div className="text-sm text-white/70">Random ticket price</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4">
+                    <div className="text-3xl font-bold mb-1">1 in 360</div>
+                    <div className="text-sm text-white/70">Odds of winning</div>
+                  </div>
+                </div>
+
+                <p className="text-lg text-white/80 mb-8 max-w-lg">
+                  The only raffle where luck decides <em>both</em> your entry number
+                  AND your ticket price. Get #7? Pay just $7. Get #350? Pay $350.
+                  Every number has the same chance to win!
                 </p>
+
                 <div className="flex flex-wrap gap-4">
-                  <a href="#enter" className="btn btn-primary text-lg px-8 py-4">
-                    Enter Now
+                  <a href="#enter" className="btn bg-white text-fc-navy hover:bg-white/90 text-lg px-8 py-4 font-bold" style={{ color: 'var(--fc-navy)' }}>
+                    Try Your Luck →
                   </a>
                   <a
                     href="#how-it-works"
                     className="btn bg-white/10 text-white hover:bg-white/20 text-lg px-8 py-4"
                   >
-                    Learn More
+                    See How It Works
                   </a>
                 </div>
               </div>
@@ -54,19 +81,39 @@ export default function Home() {
         <section id="enter" className="py-16 sm:py-24" style={{ backgroundColor: 'var(--muted)' }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
+              <div
+                className="inline-block px-4 py-1 rounded-full text-sm font-medium mb-4"
+                style={{ backgroundColor: 'rgba(27, 54, 93, 0.1)', color: 'var(--fc-navy)' }}
+              >
+                🎰 Ready to Spin?
+              </div>
               <h2
                 className="text-3xl sm:text-4xl font-bold mb-4"
                 style={{ color: 'var(--fc-navy)' }}
               >
-                Ready to Enter?
+                Take Your Chance Now
               </h2>
               <p
-                className="text-lg max-w-2xl mx-auto"
+                className="text-lg max-w-2xl mx-auto mb-4"
                 style={{ color: 'var(--muted-foreground)' }}
               >
-                Fill out the form below and authorize your entry. Remember,
-                you&apos;ll only be charged your randomly assigned amount!
+                Enter your details, authorize $360, and watch the magic happen.
+                Your number spins, lands, and that&apos;s what you pay!
               </p>
+              <div className="flex flex-wrap justify-center gap-6 text-sm" style={{ color: 'var(--muted-foreground)' }}>
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500" />
+                  Secure Stripe checkout
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500" />
+                  Instant confirmation
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500" />
+                  100% to charity
+                </span>
+              </div>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
