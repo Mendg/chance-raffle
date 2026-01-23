@@ -5,6 +5,7 @@ import Rules from '@/components/Rules';
 import EntryCounter from '@/components/EntryCounter';
 import PrizeDisplay from '@/components/PrizeDisplay';
 import EntryForm from '@/components/EntryForm';
+import HeroSpinner from '@/components/HeroSpinner';
 
 export default function Home() {
   return (
@@ -62,28 +63,12 @@ export default function Home() {
                   The raffle where your random number = your ticket price.
                 </p>
 
-                {/* Value prop boxes */}
-                <div className="grid grid-cols-3 gap-3 mb-8">
-                  <div className="bg-white/10 rounded-xl p-4 text-center">
-                    <div className="text-2xl sm:text-3xl font-bold mb-1">$1</div>
-                    <div className="text-xs text-white/70">Minimum</div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-4 text-center">
-                    <div className="text-2xl sm:text-3xl font-bold mb-1">$180</div>
-                    <div className="text-xs text-white/70">Average</div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-4 text-center">
-                    <div className="text-2xl sm:text-3xl font-bold mb-1">$360</div>
-                    <div className="text-xs text-white/70">Maximum</div>
-                  </div>
-                </div>
-
-                <p className="text-lg text-white/80 mb-8 max-w-lg">
+                <p className="text-lg text-white/70 mb-8 max-w-lg">
                   Spin for a random number 1-360. That&apos;s your entry AND your price.
                   Get lucky with #12? Pay just $12. Every number has the same odds to win!
                 </p>
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 mb-8 lg:mb-0">
                   <a href="#enter" className="btn bg-white text-fc-navy hover:bg-white/90 text-lg px-8 py-4 font-bold" style={{ color: 'var(--fc-navy)' }}>
                     Try Your Luck →
                   </a>
@@ -96,7 +81,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="lg:pl-8">
+              <div className="lg:pl-8 space-y-8">
+                {/* Hero Spinner - Visual demo */}
+                <HeroSpinner />
+
+                {/* Entry Counter below spinner */}
                 <EntryCounter />
               </div>
             </div>
