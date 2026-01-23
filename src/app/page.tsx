@@ -13,13 +13,35 @@ export default function Home() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="bg-gradient-fc text-white py-16 sm:py-24 relative overflow-hidden">
-          {/* Floating number decorations */}
+          {/* Animated gradient overlay */}
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: 'radial-gradient(circle at 20% 50%, rgba(54, 187, 174, 0.4) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(54, 187, 174, 0.3) 0%, transparent 50%)',
+            }}
+          />
+
+          {/* Grid pattern overlay */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}
+          />
+
+          {/* Floating number decorations - more prominent */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-10 left-10 text-8xl font-bold text-white/5 animate-pulse-slow">$1</div>
-            <div className="absolute top-20 right-20 text-7xl font-bold text-white/5 animate-pulse-slow">$360</div>
-            <div className="absolute bottom-20 left-1/4 text-6xl font-bold text-white/5 animate-pulse-slow">$42</div>
-            <div className="absolute bottom-10 right-1/3 text-5xl font-bold text-white/5 animate-pulse-slow">$127</div>
+            <div className="absolute top-[5%] left-[5%] text-[120px] font-bold text-white/[0.08] animate-float-slow">$1</div>
+            <div className="absolute top-[15%] right-[10%] text-[100px] font-bold text-white/[0.06] animate-float-slower">$360</div>
+            <div className="absolute bottom-[20%] left-[15%] text-[80px] font-bold text-white/[0.07] animate-float-slow">$7</div>
+            <div className="absolute bottom-[10%] right-[20%] text-[90px] font-bold text-white/[0.05] animate-float-slower">$42</div>
+            <div className="absolute top-[40%] left-[45%] text-[70px] font-bold text-white/[0.04] animate-float-slow">$127</div>
+            <div className="absolute top-[60%] right-[5%] text-[60px] font-bold text-white/[0.06] animate-float-slower">$18</div>
           </div>
+
+          {/* Glowing orbs */}
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-teal-400/20 blur-3xl animate-pulse-slow" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-teal-500/10 blur-3xl animate-pulse-slow" />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
