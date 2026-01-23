@@ -30,28 +30,35 @@ export default function Home() {
                   Live Raffle • Limited to 360 Entries
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Your Number =
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                  Win $10,000
                   <br />
-                  <span style={{ color: 'var(--fc-teal-light)' }}>Your Price</span>
+                  <span style={{ color: 'var(--fc-teal-light)' }}>for as little as $1</span>
                 </h1>
 
+                <p className="text-xl text-white/90 mb-6 max-w-lg font-medium">
+                  The raffle where your random number = your ticket price.
+                </p>
+
                 {/* Value prop boxes */}
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  <div className="bg-white/10 rounded-xl p-4">
-                    <div className="text-3xl font-bold mb-1">$1-$360</div>
-                    <div className="text-sm text-white/70">Random ticket price</div>
+                <div className="grid grid-cols-3 gap-3 mb-8">
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <div className="text-2xl sm:text-3xl font-bold mb-1">$1</div>
+                    <div className="text-xs text-white/70">Minimum</div>
                   </div>
-                  <div className="bg-white/10 rounded-xl p-4">
-                    <div className="text-3xl font-bold mb-1">1 in 360</div>
-                    <div className="text-sm text-white/70">Odds of winning</div>
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <div className="text-2xl sm:text-3xl font-bold mb-1">$180</div>
+                    <div className="text-xs text-white/70">Average</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <div className="text-2xl sm:text-3xl font-bold mb-1">$360</div>
+                    <div className="text-xs text-white/70">Maximum</div>
                   </div>
                 </div>
 
                 <p className="text-lg text-white/80 mb-8 max-w-lg">
-                  The only raffle where luck decides <em>both</em> your entry number
-                  AND your ticket price. Get #7? Pay just $7. Get #350? Pay $350.
-                  Every number has the same chance to win!
+                  Spin for a random number 1-360. That&apos;s your entry AND your price.
+                  Get lucky with #12? Pay just $12. Every number has the same odds to win!
                 </p>
 
                 <div className="flex flex-wrap gap-4">
