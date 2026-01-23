@@ -357,6 +357,41 @@ export default function EntryForm() {
             >
               ${(confirmedEntry.amountCharged / 100).toFixed(0)}
             </p>
+
+            {/* Luck Meter */}
+            <div className="mb-6 p-4 rounded-lg" style={{ backgroundColor: 'var(--muted)' }}>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium" style={{ color: 'var(--fc-navy)' }}>
+                  Luck Meter
+                </span>
+                <span className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
+                  {confirmedEntry.assignedNumber <= 36
+                    ? '🔥 Top 10%!'
+                    : confirmedEntry.assignedNumber <= 90
+                    ? '⭐ Top 25%!'
+                    : confirmedEntry.assignedNumber <= 180
+                    ? '👍 Better than average!'
+                    : '🎲 Part of the game!'}
+                </span>
+              </div>
+              <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full rounded-full transition-all duration-1000"
+                  style={{
+                    width: `${Math.max(5, 100 - (confirmedEntry.assignedNumber / 360) * 100)}%`,
+                    background: confirmedEntry.assignedNumber <= 90
+                      ? 'linear-gradient(90deg, #10b981, #36bbae)'
+                      : confirmedEntry.assignedNumber <= 180
+                      ? 'linear-gradient(90deg, #36bbae, #1b365d)'
+                      : 'linear-gradient(90deg, #1b365d, #64748b)',
+                  }}
+                />
+              </div>
+              <p className="text-xs mt-2 text-center" style={{ color: 'var(--muted-foreground)' }}>
+                Average entry costs $180 • You saved ${Math.max(0, 180 - confirmedEntry.assignedNumber)}!
+              </p>
+            </div>
+
             <p className="text-sm mb-6" style={{ color: 'var(--muted-foreground)' }}>
               A confirmation email has been sent to your inbox.
             </p>

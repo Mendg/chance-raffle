@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Ticket, Clock, Loader2 } from 'lucide-react';
+import { Ticket, Clock, Loader2, Zap, TrendingUp } from 'lucide-react';
 
 interface RaffleStats {
   totalEntries: number;
@@ -9,6 +9,8 @@ interface RaffleStats {
   isPrimarySoldOut: boolean;
   isOverflowActive: boolean;
   overflowTimeRemaining: number | null;
+  recentEntries?: { name: string; number: number; timestamp: string }[];
+  lowestAvailable?: number[];
 }
 
 export default function EntryCounter() {
@@ -139,6 +141,72 @@ export default function EntryCounter() {
               style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', color: '#ef4444' }}
             >
               Only {stats.primaryRemaining} entries left! Don&apos;t miss out!
+            </div>
+          )}
+
+          {/* Lowest Available Numbers Teaser */}
+          {stats.lowestAvailable && stats.lowestAvailable.length > 0 && (
+            <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: 'rgba(54, 187, 174, 0.1)' }}>
+              <div className="flex items-center gap-2 mb-2">
+                <Zap className="w-4 h-4" style={{ color: 'var(--fc-teal)' }} />
+                <span className="text-sm font-medium" style={{ color: 'var(--fc-navy)' }}>
+                  Lucky low numbers still available:
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {stats.lowestAvailable.slice(0, 5).map((num) => (
+                  <span
+                    key={num}
+                    className="px-3 py-1 rounded-full text-sm font-bold"
+                    style={{ backgroundColor: 'var(--fc-teal)', color: 'white' }}
+                  >
+                    #{num}
+                  </span>
+                ))}
+                {stats.lowestAvailable.length > 5 && (
+                  <span className="px-3 py-1 text-sm" style={{ color: 'var(--muted-foreground)' }}>
+                    +{stats.lowestAvailable.length - 5} more
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Recent Activity */}
+          {stats.recentEntries && stats.recentEntries.length > 0 && (
+            <div className="mt-4 pt-4 border-t" style={{ borderColor: 'var(--border)' }}>
+              <div className="flex items-center gap-2 mb-3">
+                <TrendingUp className="w-4 h-4" style={{ color: 'var(--fc-navy)' }} />
+                <span className="text-sm font-medium" style={{ color: 'var(--fc-navy)' }}>
+                  Live Activity
+                </span>
+              </div>
+              <div className="space-y-2">
+                {stats.recentEntries.slice(0, 3).map((entry, i) => (
+                  <div
+                    key={i}
+                    className="text-sm flex items-center gap-2 animate-fade-in"
+                    style={{ color: 'var(--muted-foreground)', animationDelay: `${i * 100}ms` }}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span>
+                      <strong style={{ color: 'var(--fc-navy)' }}>{entry.name}</strong> got #{entry.number} for ${entry.number}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Social Proof */}
+          {stats.totalEntries > 0 && (
+            <div className="mt-4 text-center">
+              <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
+                <span className="font-semibold" style={{ color: 'var(--fc-teal)' }}>
+                  {stats.totalEntries} {stats.totalEntries === 1 ? 'person has' : 'people have'}
+                </span>
+                {' '}already entered
+              </p>
             </div>
           )}
         </>
