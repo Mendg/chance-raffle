@@ -15,7 +15,7 @@ export default function Footer() {
               </div>
               <span className="text-xl font-bold">Friendship Circle Raffle</span>
             </div>
-            <p className="text-white/80 text-sm">
+            <p className="text-white/90 text-sm">
               Friendship Circle creates friendships between teen volunteers
               and individuals with special needs. Every entry supports our mission.
             </p>
@@ -25,11 +25,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Trust & Security</h3>
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm text-white/80">
+              <div className="flex items-center gap-2 text-sm text-white/90">
                 <Shield className="w-4 h-4" />
                 <span>501(c)(3) Nonprofit Organization</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-white/80">
+              <div className="flex items-center gap-2 text-sm text-white/90">
                 <Lock className="w-4 h-4" />
                 <span>Secure Payment Processing</span>
               </div>
@@ -39,7 +39,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h3 className="font-semibold mb-4">Questions?</h3>
-            <p className="text-white/80 text-sm mb-2">
+            <p className="text-white/90 text-sm mb-2">
               Contact our team for any inquiries about the raffle.
             </p>
             <a
@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/60">
+        <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/80">
           <p>&copy; {currentYear} Friendship Circle. All rights reserved.</p>
         </div>
       </div>

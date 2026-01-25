@@ -75,7 +75,7 @@ export default function HeroSpinner() {
           <div
             className={`
               text-7xl sm:text-8xl font-bold tabular-nums transition-all duration-300
-              ${phase === 'spinning' ? 'blur-[3px] text-white/80' : ''}
+              ${phase === 'spinning' ? 'blur-[3px] text-white/90' : ''}
               ${phase === 'slowing' ? 'blur-[1px] text-white/90' : ''}
               ${phase === 'landed' ? 'text-white' : ''}
             `}
@@ -86,7 +86,7 @@ export default function HeroSpinner() {
           {phase === 'landed' && (
             <div className="mt-2 flex items-center justify-center gap-2 animate-fade-in">
               <Sparkles className="w-5 h-5 text-yellow-300" />
-              <span className="text-white/80 text-sm">Entry #{finalNumber}</span>
+              <span className="text-white/90 text-sm">Entry #{finalNumber}</span>
               <Sparkles className="w-5 h-5 text-yellow-300" />
             </div>
           )}
@@ -110,7 +110,7 @@ export default function HeroSpinner() {
           {[283, 94, 167].map((num) => (
             <div
               key={num}
-              className="text-right text-white/60 text-lg font-medium"
+              className="text-right text-white/80 text-lg font-medium"
             >
               ${num}
             </div>
@@ -123,7 +123,7 @@ export default function HeroSpinner() {
           {[51, 219, 8].map((num) => (
             <div
               key={num}
-              className="text-left text-white/60 text-lg font-medium"
+              className="text-left text-white/80 text-lg font-medium"
             >
               ${num}
             </div>
@@ -132,7 +132,7 @@ export default function HeroSpinner() {
       </div>
 
       {/* Caption */}
-      <p className="text-center text-white/60 text-sm mt-4">
+      <p className="text-center text-white/80 text-sm mt-4">
         Watch it spin! This is what happens when you enter.
       </p>
     </div>

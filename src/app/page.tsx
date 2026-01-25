@@ -30,14 +30,12 @@ export default function Home() {
             }}
           />
 
-          {/* Floating number decorations - more prominent */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-[5%] left-[5%] text-[120px] font-bold text-white/[0.08] animate-float-slow">$1</div>
-            <div className="absolute top-[15%] right-[10%] text-[100px] font-bold text-white/[0.06] animate-float-slower">$360</div>
-            <div className="absolute bottom-[20%] left-[15%] text-[80px] font-bold text-white/[0.07] animate-float-slow">$7</div>
-            <div className="absolute bottom-[10%] right-[20%] text-[90px] font-bold text-white/[0.05] animate-float-slower">$42</div>
-            <div className="absolute top-[40%] left-[45%] text-[70px] font-bold text-white/[0.04] animate-float-slow">$127</div>
-            <div className="absolute top-[60%] right-[5%] text-[60px] font-bold text-white/[0.06] animate-float-slower">$18</div>
+          {/* Floating number decorations - subtle background texture */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
+            <div className="absolute top-[10%] left-[5%] text-[80px] font-bold text-white/[0.04]">$1</div>
+            <div className="absolute top-[20%] right-[8%] text-[70px] font-bold text-white/[0.03]">$360</div>
+            <div className="absolute bottom-[25%] left-[12%] text-[60px] font-bold text-white/[0.04]">$7</div>
+            <div className="absolute bottom-[15%] right-[15%] text-[65px] font-bold text-white/[0.03]">$42</div>
           </div>
 
           {/* Glowing orbs */}
@@ -64,12 +62,12 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-wrap gap-4 mb-8 lg:mb-0">
-                  <a href="#enter" className="btn bg-white text-fc-navy hover:bg-white/90 text-lg px-8 py-4 font-bold" style={{ color: 'var(--fc-navy)' }}>
+                  <a href="#enter" className="btn bg-white text-lg px-8 py-4 font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all" style={{ color: 'var(--fc-navy)' }}>
                     Try Your Luck →
                   </a>
                   <a
                     href="#how-it-works"
-                    className="btn bg-white/10 text-white hover:bg-white/20 text-lg px-8 py-4"
+                    className="btn btn-ghost px-6 py-3"
                   >
                     See How It Works
                   </a>

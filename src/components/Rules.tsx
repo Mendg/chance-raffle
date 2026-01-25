@@ -6,7 +6,7 @@ export default function Rules() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Entry Terms</h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">
             Everything you need to know about how our raffle works
           </p>
         </div>
@@ -20,7 +20,7 @@ export default function Rules() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">360 Primary Entries</h3>
-                <p className="text-white/80">
+                <p className="text-white/90">
                   The raffle consists of 360 unique entry numbers (1-360). Each
                   number can only be assigned once, ensuring fair odds for all
                   participants.
@@ -37,7 +37,7 @@ export default function Rules() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Random Pricing</h3>
-                <p className="text-white/80">
+                <p className="text-white/90">
                   Your entry cost equals your assigned number. Get #50, pay $50.
                   Get #350, pay $350. Every amount has an equal chance of winning!
                 </p>
@@ -53,7 +53,7 @@ export default function Rules() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">3-Hour Overflow</h3>
-                <p className="text-white/80">
+                <p className="text-white/90">
                   Once all 360 primary entries are sold, a 3-hour overflow period
                   begins. Additional entries (361+) can be purchased at random
                   amounts during this window.
@@ -70,7 +70,7 @@ export default function Rules() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Important</h3>
-                <p className="text-white/80">
+                <p className="text-white/90">
                   Payment authorization is for $360 maximum. You will only be
                   charged your assigned amount. No refunds once entry is confirmed.
                   Winner may choose cash equivalent.
@@ -81,7 +81,7 @@ export default function Rules() {
         </div>
 
         {/* Halacha Note */}
-        <div className="mt-8 p-4 bg-white/5 rounded-lg text-center text-sm text-white/60">
+        <div className="mt-8 p-4 bg-white/10 rounded-lg text-center text-sm text-white/80">
           <p>
             * The 3-hour overflow period is structured for halachic compliance with
             religious guidelines regarding charitable lotteries.
