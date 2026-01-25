@@ -59,13 +59,8 @@ export default function Home() {
                   <span style={{ color: 'var(--fc-teal-light)' }}>for as little as $1</span>
                 </h1>
 
-                <p className="text-xl text-white/90 mb-6 max-w-lg font-medium">
-                  The raffle where your random number = your ticket price.
-                </p>
-
-                <p className="text-lg text-white/70 mb-8 max-w-lg">
-                  Spin for a random number 1-360. That&apos;s your entry AND your price.
-                  Get lucky with #12? Pay just $12. Every number has the same odds to win!
+                <p className="text-xl text-white/90 mb-8 max-w-lg">
+                  Spin the wheel. Land on a number. That&apos;s what you pay for your raffle ticket.
                 </p>
 
                 <div className="flex flex-wrap gap-4 mb-8 lg:mb-0">
